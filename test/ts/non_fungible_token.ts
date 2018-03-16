@@ -59,11 +59,11 @@ contract("Non-Fungible Token", (ACCOUNTS) => {
     const deployAndInitNft = async () => {
         await deployNft();
 
-        await mintableNft.mint
+        await mintableNft.mintExternal
             .sendTransactionAsync(TOKEN_OWNER_1, TOKEN_ID_1);
-        await mintableNft.mint
+        await mintableNft.mintExternal
             .sendTransactionAsync(TOKEN_OWNER_2, TOKEN_ID_2);
-        await mintableNft.mint
+        await mintableNft.mintExternal
             .sendTransactionAsync(TOKEN_OWNER_3, TOKEN_ID_3);
     };
 
@@ -92,15 +92,15 @@ contract("Non-Fungible Token", (ACCOUNTS) => {
         });
 
         it("should return correct current supply after each mint", async () => {
-            await mintableNft.mint
+            await mintableNft.mintExternal
                 .sendTransactionAsync(TOKEN_OWNER_1, TOKEN_ID_1);
             await expect(mintableNft.totalSupply.callAsync()).to.eventually.bignumber.equal(1);
 
-            await mintableNft.mint
+            await mintableNft.mintExternal
                 .sendTransactionAsync(TOKEN_OWNER_2, TOKEN_ID_2);
             await expect(mintableNft.totalSupply.callAsync()).to.eventually.bignumber.equal(2);
 
-            await mintableNft.mint
+            await mintableNft.mintExternal
                 .sendTransactionAsync(TOKEN_OWNER_3, TOKEN_ID_3);
             await expect(mintableNft.totalSupply.callAsync()).to.eventually.bignumber.equal(3);
         });
